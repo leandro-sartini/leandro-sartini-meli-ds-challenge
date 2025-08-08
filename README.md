@@ -14,6 +14,10 @@ meli_ds_challenge/
 │
 ├── notebooks/           # Notebooks principales de análisis y experimentación
 │   └── exploratory/     # Notebooks exploratorios o preliminares
+│       └── Ofertas Relampago/  # Análisis completo de ofertas relámpago
+│           ├── 0-Primeras-analises.ipynb    # Análisis inicial y estructura de datos
+│           ├── 1-Creando-Variables.ipynb    # Feature engineering y limpieza
+│           └── 2-EDA_Verticales.ipynb       # Análisis por categorías y visualizaciones
 │
 ├── production/          # Componentes preparados para producción
 │   ├── model/           # Modelos entrenados en formato binario
@@ -37,10 +41,42 @@ meli_ds_challenge/
 
 ## Ejercicios Abordados
 
-### 1. Análisis Exploratorio de Ofertas Relámpago
-EDA para obtener insights sobre este tipo de ofertas: consumo de stock, duración, comportamiento por categoría u horario, etc.
+### 1. Análisis Exploratorio de Ofertas Relámpago 🚀
+**Objetivo**: Realizar un EDA completo sobre las Ofertas Relámpago de Mercado Libre para obtener insights sobre comportamiento, patrones de éxito y optimización de campañas.
 
-### 3. Predicción de Fallas de Dispositivos
+#### **Dataset Analizado**
+- **48,746 registros** de ofertas relámpago
+- **Período**: Julio 2021 (concentrado en 30/07/2021 - 1,300 ofertas)
+- **Variables clave**: Stock involucrado, ventas, duración, categorías, envío
+
+#### **Principales Insights Descubiertos**
+
+**Comportamiento de Ventas:**
+- **Beauty & Health** domina en **volumen de ventas** con tendencia creciente desde mediados de junio
+- **Consumer Electronics (CE)** tiene el **ticket medio más alto** (2.16x mayor que la segunda categoría)
+- **Home & Industry** y **Entertainment** generan los **mayores montos** totales
+
+**Patrones Temporales:**
+- **Duración promedio**: 6 horas por oferta relámpago
+- **Picos de ventas**: Consistente en Beauty & Health, irregular en CE
+- **Evolución diaria**: Patrones similares entre cantidad y monto vendido por hora
+
+**Análisis Monetario:**
+- **Ticket medio promedio**: $51 por unidad
+- **Stock promedio**: 35 unidades por oferta
+- **Tasa de conversión**: ~31% del stock involucrado se vende
+
+**Logística:**
+- **Envío gratuito** es el tipo predominante
+- **Origen**: Principalmente "Otros" (categoría agregada para valores nulos)
+
+#### **Recomendaciones Estratégicas**
+1. **Beauty & Health**: Expandir campañas por su consistencia y volumen
+2. **CE**: Enfocar en productos premium con alto ticket medio
+3. **Optimización**: Ajustar duración de ofertas según categoría
+4. **Stock**: Mejorar estimación basada en patrones históricos por vertical
+
+### 2. Predicción de Fallas de Dispositivos 🔧
 Entrenamiento de un modelo predictivo para estimar la probabilidad de falla de un dispositivo con un día de anticipación, utilizando telemetría diaria.
 
 ## Instalación y Entorno
@@ -57,6 +93,21 @@ source venv/bin/activate   # o venv\Scripts\activate en Windows
 # Instalar dependencias
 pip install -r requirements.txt
 ```
+
+## Metodología de Análisis 📊
+
+### Herramientas Utilizadas
+- **Python**: pandas, numpy, matplotlib, seaborn
+- **Análisis**: EDA sistemático con visualizaciones interactivas
+- **Feature Engineering**: Creación de variables temporales y métricas de rendimiento
+- **Visualización**: Gráficos de evolución temporal, análisis por verticales, boxplots
+
+### Proceso de Análisis
+1. **Exploración Inicial**: Estructura de datos, tipos, valores nulos
+2. **Limpieza**: Conversión de fechas, manejo de valores faltantes
+3. **Feature Engineering**: Duración de ofertas, métricas por hora, ticket medio
+4. **Análisis por Verticales**: Comportamiento diferenciado por categorías
+5. **Insights y Recomendaciones**: Conclusiones accionables para optimización
 
 ## Linting y Formato de Código
 
@@ -95,5 +146,9 @@ Este proyecto sigue una estrategia de desarrollo basada en **Git Flow** con las 
 
 ## Estado del Proyecto
 
-- Estructura de carpetas organizada
-- Workflow de desarrollo establecido con ramas de características y Pull Requests
+- ✅ **Estructura de carpetas organizada**
+- ✅ **Workflow de desarrollo establecido** con ramas de características y Pull Requests
+- ✅ **Análisis Exploratorio Completo** de Ofertas Relámpago con insights detallados
+- ✅ **Feature Engineering** implementado con variables temporales y métricas de rendimiento
+- ✅ **Visualizaciones** creadas para análisis por verticales y evolución temporal
+- 🔄 **Predicción de Fallas de Dispositivos** - En desarrollo
