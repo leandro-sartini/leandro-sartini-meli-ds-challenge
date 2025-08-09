@@ -19,3 +19,5 @@ seaborn==1.7.1
 scikit-learn
 lightgbm==4.6.0
 xgboost==3.0.1
+statsmodels==0.14.6
+scipy==1.14.0
