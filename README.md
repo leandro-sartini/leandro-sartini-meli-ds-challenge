@@ -1,154 +1,277 @@
 # Desafío de Ciencia de Datos - Mercado Libre
 
-Este repositorio contiene mi solución al Desafío de Ciencia de Datos propuesto por el equipo de Data & Analytics de Mercado Libre. El desafío incluye ejercicios independientes que abarcan exploración de datos, modelado y preparación de componentes productivos en machine learning.
+Este repositorio contiene mi solución al Desafío de Ciencia de Datos propuesto por el equipo de Data & Analytics de Mercado Libre. El proyecto incluye un análisis exploratorio completo de las Ofertas Relámpago y está estructurado siguiendo las mejores prácticas de Data Science.
 
-## Estructura del Proyecto
+## 🎯 Objetivo del Proyecto
 
-```
-meli_ds_challenge/
-├── data/                # Datos del desafío y reportes
-│   ├── 00_raw/          # Archivos CSV originales (e.g. ofertas_relampago.csv, full_devices.csv)
-│   ├── 01_processed/    # Datos procesados o con features agregadas
-│   ├── 02_external/     # Datos externos adicionales (si aplica)
-│   └── 03_reports/      # PDF del enunciado, presentaciones, papers
-│
-├── notebooks/           # Notebooks principales de análisis y experimentación
-│   └── exploratory/     # Notebooks exploratorios o preliminares
-│       └── Ofertas Relampago/  # Análisis completo de ofertas relámpago
-│           ├── 0-Primeras-analises.ipynb    # Análisis inicial y estructura de datos
-│           ├── 1-Creando-Variables.ipynb    # Feature engineering y limpieza
-│           └── 2-EDA_Verticales.ipynb       # Análisis por categorías y visualizaciones
-│
-├── production/          # Componentes preparados para producción
-│   ├── model/           # Modelos entrenados en formato binario
-│   ├── pipeline/        # Código de preprocesamiento y transformación
-│   └── inference/       # Scripts de inferencia (opcional)
-│
-├── src/                 # Código fuente modular principal
-│   ├── data/            # Scripts de carga, limpieza y generación de features
-│   ├── models/          # Entrenamiento, evaluación y tuning de modelos
-│   └── config/          # Configuraciones en YAML o JSON para reproducibilidad
-│
-├── github/              # Configuraciones de workflows para GitHub Actions
-│   └── workflows/       # CI para linting y formato automático (Black, flake8)
-│
-├── tests/               # Pruebas unitarias (opcional)
-├── .pre-commit-config.yaml
-├── pyproject.toml
-├── requirements.txt
-└── README.md
-```
+Analizar el comportamiento de las **Ofertas Relámpago** de Mercado Libre para identificar patrones de éxito, optimizar campañas y generar insights accionables para mejorar la conversión y rentabilidad.
 
-## Ejercicios Abordados
+## 📊 Análisis de Ofertas Relámpago - Resumen Ejecutivo
 
-### 1. Análisis Exploratorio de Ofertas Relámpago 🚀
-**Objetivo**: Realizar un EDA completo sobre las Ofertas Relámpago de Mercado Libre para obtener insights sobre comportamiento, patrones de éxito y optimización de campañas.
-
-#### **Dataset Analizado**
+### Dataset Analizado
 - **48,746 registros** de ofertas relámpago
 - **Período**: Julio 2021 (concentrado en 30/07/2021 - 1,300 ofertas)
 - **Variables clave**: Stock involucrado, ventas, duración, categorías, envío
 
-#### **Principales Insights Descubiertos**
+### Principales Insights Descubiertos
 
-**Comportamiento de Ventas:**
-- **Beauty & Health** domina en **volumen de ventas** con tendencia creciente desde mediados de junio
-- **Consumer Electronics (CE)** tiene el **ticket medio más alto** (2.16x mayor que la segunda categoría)
-- **Home & Industry** y **Entertainment** generan los **mayores montos** totales
+#### 🏆 Comportamiento por Verticales
+- **Beauty & Health**: Domina en volumen de ventas con tendencia creciente
+- **Consumer Electronics**: Mayor ticket medio (2.16x superior a la segunda categoría)
+- **Home & Industry** y **Entertainment**: Generan los mayores montos totales
 
-**Patrones Temporales:**
+#### ⏰ Patrones Temporales
 - **Duración promedio**: 6 horas por oferta relámpago
 - **Picos de ventas**: Consistente en Beauty & Health, irregular en CE
 - **Evolución diaria**: Patrones similares entre cantidad y monto vendido por hora
 
-**Análisis Monetario:**
+#### 💰 Análisis Monetario
 - **Ticket medio promedio**: $51 por unidad
 - **Stock promedio**: 35 unidades por oferta
 - **Tasa de conversión**: ~31% del stock involucrado se vende
 
-**Logística:**
+#### 🚚 Logística
 - **Envío gratuito** es el tipo predominante
 - **Origen**: Principalmente "Otros" (categoría agregada para valores nulos)
 
-#### **Recomendaciones Estratégicas**
+### 🎯 Recomendaciones Estratégicas
 1. **Beauty & Health**: Expandir campañas por su consistencia y volumen
 2. **CE**: Enfocar en productos premium con alto ticket medio
 3. **Optimización**: Ajustar duración de ofertas según categoría
 4. **Stock**: Mejorar estimación basada en patrones históricos por vertical
 
-### 2. Predicción de Fallas de Dispositivos 🔧
-Entrenamiento de un modelo predictivo para estimar la probabilidad de falla de un dispositivo con un día de anticipación, utilizando telemetría diaria.
+## 📁 Estructura del Proyecto
 
-## Instalación y Entorno
+```
+leandro-sartini-meli-ds-challenge/
+├── data/                           # Datos del proyecto
+│   ├── 00_raw/                     # Archivos CSV originales
+│   ├── 01_processed/               # Datos procesados (Parquet)
+│   ├── 02_external/                # Datos externos adicionales
+│   └── 03_reports/                 # Reportes y documentación
+│
+├── notebooks/                      # Notebooks de análisis
+│   └── exploratory/
+│       └── Ofertas Relampago/      # Análisis completo de ofertas relámpago
+│           ├── 0-Primeras-analises.ipynb           # Análisis inicial y estructura
+│           ├── 1-Creando-Variables.ipynb           # Feature engineering
+│           ├── 2-EDA_Verticales.ipynb              # Análisis por categorías
+│           ├── 3-EDA_Nulos_Sin_Movimiento.ipynb    # Análisis de ofertas sin ventas
+│           ├── 4-EDA_Nulos_Con_Movimiento.ipynb    # Análisis de inconsistencias
+│           └── 5-Hypothesis_Testing.ipynb          # Pruebas estadísticas
+│
+├── production/                     # Componentes de producción
+│   ├── model/                      # Modelos entrenados
+│   ├── pipeline/                   # Pipelines de procesamiento
+│   └── inference/                  # Scripts de inferencia
+│
+├── src/                           # Código fuente modular
+│   ├── utils.py                   # Utilidades para DataFrames y visualización
+│   └── __init__.py                # Configuración del paquete
+│
+├── github/                        # Configuraciones de CI/CD
+│   └── workflows/
+│       └── lint-check.yml         # Workflow de linting
+│
+├── pyproject.toml                 # Configuración del proyecto
+├── requirements.txt               # Dependencias
+└── README.md                      # Este archivo
+```
+
+## 🔧 Utilidades del Proyecto
+
+### DataFrameUtils
+Clase con utilidades para manipulación de DataFrames:
+
+```python
+from src.utils import DataFrameUtils
+
+# Calcular duración en horas entre columnas datetime
+duration_hours = DataFrameUtils.compute_duration_hours(df, 'start_time', 'end_time')
+
+# Validar DataFrame
+is_valid = DataFrameUtils.validate_dataframe(df, required_columns=['col1', 'col2'])
+```
+
+### VisualizationUtils
+Clase con utilidades para visualización:
+
+```python
+from src.utils import VisualizationUtils
+
+# Añadir etiquetas a gráficos de barras
+VisualizationUtils.add_bar_labels(ax, fmt="{:,.0f}", fontsize=12)
+
+# Con formateador personalizado
+def custom_format(val):
+    return f"${val:,.0f}K" if val >= 1000 else f"${val:,.0f}"
+
+VisualizationUtils.add_bar_labels(ax, custom_formatter=custom_format)
+```
+
+## 📈 Notebooks de Análisis
+
+### 1. **0-Primeras-analises.ipynb** - Análisis Inicial
+- Estructura del dataset (48,746 registros, 13 columnas)
+- Identificación de tipos de datos y valores nulos
+- Resumen estadístico general
+- Preparación para feature engineering
+
+### 2. **1-Creando-Variables.ipynb** - Feature Engineering
+- Conversión de fechas a datetime
+- Creación de variables temporales (duración, día de semana, mes)
+- Limpieza de datos (eliminación de columnas redundantes)
+- Uso de utilidades personalizadas del proyecto
+
+### 3. **2-EDA_Verticales.ipynb** - Análisis por Categorías
+- Evolución diaria de ventas por verticales
+- Análisis de comportamiento por categorías
+- Visualizaciones de tendencias temporales
+- Comparación de métricas entre verticales
+
+### 4. **3-EDA_Nulos_Sin_Movimiento.ipynb** - Ofertas Sin Ventas
+- Análisis de ~23k ofertas sin ventas
+- Distribución de duración de ofertas sin éxito
+- Patrones por categorías y dominios
+- Identificación de factores asociados a la falta de ventas
+
+### 5. **4-EDA_Nulos_Con_Movimiento.ipynb** - Inconsistencias
+- Análisis de ofertas con movimiento de stock pero sin ventas registradas
+- Detección de casos sospechosos
+- Validación de integridad de datos
+- Identificación de posibles errores en el sistema
+
+### 6. **5-Hypothesis_Testing.ipynb** - Pruebas Estadísticas
+- **Test de hipótesis sobre envío gratis**: Impacto en ventas por vertical
+- **ANOVA**: Diferencias significativas entre verticales
+- **Análisis de efectos**: Tamaño del efecto (Cohen's d)
+- **Conclusiones estadísticas**: Beauty & Health muestra diferencias significativas
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+- Python 3.10+
+- pip
+
+### Instalación
 
 ```bash
 # Clonar el repositorio
 git clone https://github.com/leandro-sartini/leandro-sartini-meli-ds-challenge.git
-cd leandro-sartini-meli-ds-challenge.git
+cd leandro-sartini-meli-ds-challenge
 
-# (Opcional) Crear y activar entorno virtual
+# Crear entorno virtual (recomendado)
 python -m venv venv
-source venv/bin/activate   # o venv\Scripts\activate en Windows
+source venv/bin/activate  # Linux/Mac
+# o
+venv\Scripts\activate     # Windows
 
 # Instalar dependencias
 pip install -r requirements.txt
 ```
 
-## Metodología de Análisis 📊
+### Uso de las Utilidades
+
+```python
+# En un notebook Jupyter
+import sys
+sys.path.append('src')
+
+from utils import DataFrameUtils, VisualizationUtils
+
+# Ejemplo de uso
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Crear datos de ejemplo
+df = pd.DataFrame({
+    'start_time': pd.to_datetime(['2023-01-01 10:00:00', '2023-01-01 14:00:00']),
+    'end_time': pd.to_datetime(['2023-01-01 12:00:00', '2023-01-01 18:00:00'])
+})
+
+# Calcular duración
+duration = DataFrameUtils.compute_duration_hours(df, 'start_time', 'end_time')
+print(duration)
+
+# Crear gráfico con etiquetas
+fig, ax = plt.subplots()
+ax.bar(['A', 'B'], [1000, 2000])
+VisualizationUtils.add_bar_labels(ax, fmt="{:,.0f}")
+plt.show()
+```
+
+## 📊 Metodología de Análisis
 
 ### Herramientas Utilizadas
 - **Python**: pandas, numpy, matplotlib, seaborn
-- **Análisis**: EDA sistemático con visualizaciones interactivas
-- **Feature Engineering**: Creación de variables temporales y métricas de rendimiento
-- **Visualización**: Gráficos de evolución temporal, análisis por verticales, boxplots
+- **Análisis Estadístico**: scipy, statsmodels
+- **Visualización**: Gráficos interactivos y estáticos
+- **Feature Engineering**: Variables temporales y métricas de rendimiento
 
 ### Proceso de Análisis
-1. **Exploración Inicial**: Estructura de datos, tipos, valores nulos
+1. **Exploración Inicial**: Estructura, tipos, valores nulos
 2. **Limpieza**: Conversión de fechas, manejo de valores faltantes
-3. **Feature Engineering**: Duración de ofertas, métricas por hora, ticket medio
-4. **Análisis por Verticales**: Comportamiento diferenciado por categorías
-5. **Insights y Recomendaciones**: Conclusiones accionables para optimización
+3. **Feature Engineering**: Duración, métricas por hora, ticket medio
+4. **Análisis por Verticales**: Comportamiento diferenciado
+5. **Análisis de Nulos**: Ofertas sin ventas e inconsistencias
+6. **Pruebas Estadísticas**: Validación de hipótesis
+7. **Insights y Recomendaciones**: Conclusiones accionables
 
-## Linting y Formato de Código
+## 🔍 Principales Hallazgos
 
-GitHub Actions ejecuta automáticamente, todavia no esta configurado! Necesitas de una GitHub Org:
-- `black` para formato de código
-- `flake8` para cumplimiento con PEP8
+### Comportamiento de Ventas
+- **Beauty & Health** lidera en volumen con tendencia creciente
+- **Consumer Electronics** tiene el ticket medio más alto
+- **Home & Industry** y **Entertainment** generan mayores montos totales
 
-También puedes ejecutarlos localmente:
+### Patrones Temporales
+- Duración promedio de 6 horas por oferta
+- Picos de ventas consistentes en Beauty & Health
+- Evolución diaria similar entre cantidad y monto
 
+### Análisis de Nulos
+- ~47% de ofertas no tuvieron ventas
+- Casos sospechosos con movimiento de stock pero sin ventas registradas
+- Patrones específicos por categorías y dominios
+
+### Impacto del Envío Gratis
+- Diferencias significativas por vertical
+- Beauty & Health: 36 unidades menos con envío gratis
+- Entertainment: No hay diferencia estadísticamente significativa
+
+## 🛠️ Desarrollo y Contribución
+
+### Linting y Formato
 ```bash
+# Formatear código
 black .
+
+# Verificar estilo
 flake8 .
 ```
 
-## Workflow y Estrategia de Desarrollo
+### Workflow de Desarrollo
+- **Ramas de características**: `feature/nombre-caracteristica`
+- **Pull Requests**: Revisión obligatoria antes del merge
+- **CI/CD**: GitHub Actions para linting automático
 
-Este proyecto sigue una estrategia de desarrollo basada en **Git Flow** con las siguientes prácticas:
+## 📈 Estado del Proyecto
 
-### Estrategia de Ramas (Branching Strategy)
-- **`main`**: Rama principal que contiene el código estable y listo para producción
-- **`feature/*`**: Ramas de características para desarrollo de nuevas funcionalidades
-- **Pull Requests**: Todas las características se desarrollan en ramas separadas y se integran a `main` mediante Pull Requests
+- ✅ **Estructura de proyecto organizada**
+- ✅ **Análisis Exploratorio Completo** de Ofertas Relámpago
+- ✅ **Feature Engineering** implementado
+- ✅ **Utilidades personalizadas** (DataFrameUtils, VisualizationUtils)
+- ✅ **Análisis de nulos** y casos especiales
+- ✅ **Pruebas estadísticas** y validación de hipótesis
+- ✅ **Visualizaciones** y reportes
+- 🔄 **Componentes de producción** - En desarrollo
 
-### Flujo de Trabajo
-1. Crear una nueva rama desde `main` para cada característica: `git checkout -b feature/nombre-caracteristica`
-2. Desarrollar y probar la funcionalidad en la rama de característica
-3. Crear un Pull Request hacia `main` con descripción detallada de los cambios
-4. Revisión de código y aprobación del PR
-5. Merge a `main` una vez aprobado
+## 📞 Contacto
 
-### Beneficios de esta Estrategia
-- **Trazabilidad**: Cada característica tiene su propia rama y PR
-- **Revisión de Código**: Proceso de revisión obligatorio antes del merge
-- **Estabilidad**: El código en `main` siempre está en estado estable
-- **Colaboración**: Facilita el trabajo en equipo y la revisión de código
+- **Autor**: Leandro Sartini
+- **Proyecto**: Desafío de Ciencia de Datos - Mercado Libre
+- **Repositorio**: [GitHub](https://github.com/leandro-sartini/leandro-sartini-meli-ds-challenge)
 
-## Estado del Proyecto
+---
 
-- ✅ **Estructura de carpetas organizada**
-- ✅ **Workflow de desarrollo establecido** con ramas de características y Pull Requests
-- ✅ **Análisis Exploratorio Completo** de Ofertas Relámpago con insights detallados
-- ✅ **Feature Engineering** implementado con variables temporales y métricas de rendimiento
-- ✅ **Visualizaciones** creadas para análisis por verticales y evolución temporal
-- 🔄 **Predicción de Fallas de Dispositivos** - En desarrollo
+*Este proyecto demuestra habilidades avanzadas en análisis exploratorio de datos, feature engineering, visualización y desarrollo de utilidades reutilizables para proyectos de Data Science.*
