@@ -255,7 +255,7 @@ flake8 .
 - **Pull Requests**: Revisión obligatoria antes del merge
 - **CI/CD**: GitHub Actions para linting automático
 
-## 📈 Estado del Proyecto
+## 📈 Estado del Proyecto - Ejercicio 1
 
 - ✅ **Estructura de proyecto organizada**
 - ✅ **Análisis Exploratorio Completo** de Ofertas Relámpago
@@ -264,7 +264,6 @@ flake8 .
 - ✅ **Análisis de nulos** y casos especiales
 - ✅ **Pruebas estadísticas** y validación de hipótesis
 - ✅ **Visualizaciones** y reportes
-- 🔄 **Componentes de producción** - En desarrollo
 
 ## 📞 Contacto
 
