@@ -22,9 +22,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar código fuente
 COPY src/ ./src/
 COPY production/ ./production/
+COPY start_streamlit.sh ./
 
 # Crear directorio para datos si no existe
 RUN mkdir -p data/00_raw
+
+# Hacer el script ejecutable
+RUN chmod +x start_streamlit.sh
 
 # Exponer puerto de Streamlit
 EXPOSE 8501
@@ -32,12 +36,12 @@ EXPOSE 8501
 # Configurar variables de entorno
 ENV PYTHONPATH=/app
 ENV STREAMLIT_SERVER_PORT=8501
-ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+ENV STREAMLIT_SERVER_BASE_URL_PATH=""
 
 # Comando para ejecutar la aplicación
-CMD ["streamlit", "run", "src/dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["./start_streamlit.sh"]
 
 # Metadatos
 LABEL maintainer="Leandro Sartini"

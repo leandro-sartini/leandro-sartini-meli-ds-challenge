@@ -17,6 +17,12 @@ docker-compose up -d --build
 
 #### Opción 2: Streamlit Directo
 ```bash
+# Crear y activar entorno virtual (recomendado)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# o
+venv\Scripts\activate     # Windows
+
 # Instalar dependencias
 pip install -r requirements.txt
 
