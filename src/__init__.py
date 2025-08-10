@@ -1,17 +1,26 @@
 """
-Módulo principal del proyecto leandro-sartini-meli-ds-challenge.
-
-Este módulo contiene utilidades y herramientas para el análisis de datos,
-procesamiento de DataFrames e ingeniería de características para series temporales.
+Main package for the ML project.
 """
 
-from .utils import DataFrameUtils, VisualizationUtils
+# Import key functions from modules
 from .feature_engineering import SimpleSensorFE, TimeSeriesFeatureExtractor
+from .utils import *
+
+# Import from submodules
+from .models import *
+from .visualization import *
+from .utils import *
 
 __all__ = [
-    'DataFrameUtils', 
-    'VisualizationUtils',
+    # Feature Engineering
     'SimpleSensorFE',
-    'TimeSeriesFeatureExtractor'
+    'TimeSeriesFeatureExtractor',
+    
+    # Visualization
+    'graficar_roc_auc',
+    'graficar_confusion_matrix',
+    'graficar_metricas_comparacion',
+    'graficar_curvas_precision_recall',
+    'crear_reporte_completo',
 ]
 __version__ = '1.0.0'
