@@ -2,7 +2,7 @@
 
 Este repositorio contiene mi solución al Desafío de Ciencia de Datos propuesto por el equipo de Data & Analytics de Mercado Libre. El proyecto incluye análisis completos de **Ofertas Relámpago** y **Previsión de Falla** de dispositivos, estructurado siguiendo las mejores prácticas de Data Science.
 
-## 🚀 Dashboard de Predicción de Fallas
+## Dashboard de Predicción de Fallas
 
 ### Cómo Ejecutar el Dashboard
 
@@ -47,7 +47,7 @@ Una vez ejecutado, abre tu navegador en:
 1. **Seleccionar Dispositivo**: Elige uno de los 10 dispositivos disponibles
 2. **Configurar Días**: Define cuántos días de datos generar (7-90 días)
 3. **Configurar Falla**: Activa/desactiva el patrón de falla y elige el día
-4. **Generar Simulación**: Haz clic en "🚀 Generar Simulación"
+4. **Generar Simulación**: Haz clic en "Generar Simulación"
 5. **Analizar Resultados**: Revisa telemetría, predicciones y métricas
 
 ### Solución de Problemas Docker
@@ -128,7 +128,7 @@ leandro-sartini-meli-ds-challenge/
 ├── src/                           # Código fuente modular
 │   ├── config/                    # Configuraciones
 │   ├── data/                      # Procesamiento de datos
-│   ├── dashboard.py               # 🎯 Dashboard Streamlit principal
+│   ├── dashboard.py               # Dashboard Streamlit principal
 │   ├── feature_engineering.py     # Feature engineering para fallas
 │   ├── models/                    # Modelos de ML
 │   ├── scripts/                   # Scripts de entrenamiento
@@ -140,8 +140,8 @@ leandro-sartini-meli-ds-challenge/
 │   └── workflows/
 │       └── lint-check.yml         # Workflow de linting
 │
-├── Dockerfile                     # 🐳 Configuración Docker
-├── docker-compose.yml            # 🐳 Orquestación Docker
+├── Dockerfile                     # Configuración Docker
+├── docker-compose.yml             # Orquestación Docker
 ├── pyproject.toml                 # Configuración del proyecto
 ├── requirements.txt               # Dependencias
 └── README.md                      # Este archivo
@@ -229,7 +229,7 @@ from feature_engineering import SimpleSensorFE
 from models.xgb_fe_optuna import XGBOptunaModel
 ```
 
-## 📊 Metodología de Análisis
+## Metodología de Análisis
 
 ### Ejercicio 1: Ofertas Relámpago
 1. **Exploración Inicial**: Estructura, tipos, valores nulos
@@ -247,7 +247,7 @@ from models.xgb_fe_optuna import XGBOptunaModel
 5. **Optimización de Threshold**: Maximización de recall
 6. **Validación**: Matriz de confusión y métricas de rendimiento
 
-## 🔍 Principales Hallazgos
+## Principales Hallazgos
 
 ### Ejercicio 1: Ofertas Relámpago
 - **Beauty & Health** lidera en volumen con tendencia creciente
@@ -263,7 +263,7 @@ from models.xgb_fe_optuna import XGBOptunaModel
 - **Threshold crítico**: 0.3 optimizado para maximizar detección
 - **Recall de 76.2%**: Detecta el 76.2% de las fallas potenciales
 
-## 🛠️ Desarrollo y Contribución
+## Desarrollo y Contribución
 
 ### Linting y Formato
 ```bash
