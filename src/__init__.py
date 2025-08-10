@@ -4,7 +4,7 @@ Main package for the ML project.
 
 # Import key functions from modules
 from .feature_engineering import SimpleSensorFE, TimeSeriesFeatureExtractor
-from .utils import *
+from .DFutils import *
 
 # Import from submodules
 from .models import *
