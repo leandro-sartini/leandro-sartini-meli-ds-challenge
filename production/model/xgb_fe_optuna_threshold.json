@@ -1,0 +1,23 @@
+{
+  "threshold": 0.14,
+  "custom_score_val": 0.9999344833893702,
+  "f2_score_val": 1.0,
+  "recall_val": 1.0,
+  "precision_val": 1.0,
+  "custom_score_test": 0.16620202317523458,
+  "f2_score_test": 0.16666666666666666,
+  "recall_test": 0.42857142857142855,
+  "precision_test": 0.04838709677419355,
+  "confusion_matrix": [
+    [
+      24701,
+      177
+    ],
+    [
+      12,
+      9
+    ]
+  ],
+  "false_positive_rate": 0.007114719832783986,
+  "false_negative_rate": 0.5714285714285714
+}
